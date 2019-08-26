@@ -1,3 +1,5 @@
 # bingo
 
-- primeiro commmit
+- codigo inicial do bingo
+
+
