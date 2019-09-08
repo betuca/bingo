@@ -2,21 +2,19 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' href='simple.css' />
+    <script src="./jquery/jquery-3.4.1.min.js"></script>
     <script type='text/javascript' src='bingo.js'></script>
 </head>
 
 <body>
-    <h1 id="main">Bingo
-    </h1>
-    <h1>My First Web Page</h1>
-    <p>My First Paragraph</p>
-    <p id="card"></p>
-    <script>
-
-    printCard();
-    
-    </script>
+    <h1 id="main">Bingo</h1>
+    <div class="results" id="bingoResults"></div> 
+    <div class="card" id="card">
+        <div class="line" id="line1"></div>
+        <div class="line" id="line2"></div>
+    </div>
 </body>
 
 </html>

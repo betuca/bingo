@@ -1,4 +1,20 @@
 
+$(document).ready(function(){
+
+//  printCard();
+
+	drawAllNumbers();
+
+	fillCard();
+
+	$(".ball").click(function() {
+	    $(this).toggleClass('ball-selected');
+	    $(this).toggleClass('ball-unselected');
+	});
+
+});  
+
+//var allValues = drawAllNumbers();
 
 var valuesB = buildValues(1, 15);
 var valuesI = buildValues(16, 30);
@@ -6,47 +22,73 @@ var valuesN = buildValues(31, 45);
 var valuesG = buildValues(46, 60);
 var valuesO = buildValues(61, 75);
 
-function printCard(){
+var numbersB = drawNumbers(valuesB, 5, 15);
+var numbersI = drawNumbers(valuesI, 5, 15);
+var numbersN = drawNumbers(valuesN, 5, 15);
+var numbersG = drawNumbers(valuesG, 5, 15);
+var numbersO = drawNumbers(valuesO, 5, 15);
 
-	// document.write(valuesB);
+function drawAllNumbers(){
+	var allValues = drawNumbers(buildValues(1, 75), 30, 75);
 
-	var numbersB = drawNumbers(valuesB, 5);
-	document.write("numbersB: " + numbersB);
-	document.write("<br>");
-	var numbersI = drawNumbers(valuesI, 5);
-	document.write("numbersI: " + numbersI);
-	document.write("<br>");
-	var numbersN = drawNumbers(valuesN, 5);
-	document.write("numbersN: " + numbersN);
-	document.write("<br>");
-	var numbersG = drawNumbers(valuesG, 5);
-	document.write("numbersG: " + numbersG);
-	document.write("<br>");
-	var numbersO = drawNumbers(valuesO, 5);
-	document.write("numbersO: " + numbersO);
-	document.write("<br>");
-
-	document.getElementById("card").innerHTML = numbersB + "<br>" + numbersI + "<br>" + numbersN + "<br>" + numbersG + "<br>" + numbersO;
+	var values = "";
+	for (var i = 0; i < 30; i++) {
+		// values += ", " + allValues[i];
+//		$('#bingoResults').append(values);
+		createBallDiv("bingoResults", allValues[i]);
+	}
 }
 
-function drawNumbers(values, quantity){
+function createLineDiv(lineNumber){
+	var id = "line" + lineNumber;
+	$('#card').append('<div class="line" id="' + id + '"></div>');
+
+	for (var column = 1; column <= 5; column++) {
+		var origin;
+		if (column == 1){
+			origin = numbersB;
+		} else if (column == 2){
+			origin = numbersI;
+		} else if (column == 3){
+			origin = numbersN;
+		} else if (column == 4){
+			origin = numbersG;
+		} else if (column == 5){
+			origin = numbersO;
+		}
+		createBallDiv(id, origin[lineNumber]);
+	}
+}
+
+function createBallDiv(id, value){
+	$('#'+id).append('<div class="ball ball-unselected"><span class="number">'+ value +'</span></div>');
+}
+
+function fillCard(){
+	for (var i = 0; i < 5; i++) {
+		createLineDiv(i);
+	}
+}
+
+function drawNumbers(values, quantity, maxNumber){
 
 	var numbers = [];
-	var indexes = drawUniqueIndexes(quantity);
+	var indexes = drawUniqueIndexes(quantity, maxNumber);
 
 	for (var i = 0; i < indexes.length; i++) {
 		var value = values[indexes[i]];
+
 		numbers.push(value);
 	}
 	return numbers;
 }
 
-function drawUniqueIndexes(quantity){
+function drawUniqueIndexes(quantity, maxNumber){
 
 	var indexes = [];
 
 	while(indexes.length < quantity){
-		var currentIndex = Math.floor(Math.random() * 16);
+		var currentIndex = Math.floor(Math.random() * maxNumber);
 		if (!indexes.includes(currentIndex)){
 			indexes.push(currentIndex); 			
 		} 
