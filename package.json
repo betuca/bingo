@@ -1,0 +1,19 @@
+{
+  "name": "bingo",
+  "version": "1.0.0",
+  "description": "- codigo inicial do bingo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/betuca/bingo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betuca/bingo/issues"
+  },
+  "homepage": "https://github.com/betuca/bingo#readme"
+}
